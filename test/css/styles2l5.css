@@ -1,0 +1,76 @@
+@font-face {
+    font-family: 'Dancing Script';
+    src: url('../fonts/DancingScript-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'PlaywriteCU';
+    src: url('../fonts/PlaywriteCU-VariableFont_wght.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #ffffff;
+    position: relative;
+}
+
+.heart {
+    width: 20px;
+    height: 20px;
+    position: fixed;
+    background-color: #ff0000;
+    transform: rotate(45deg);
+    opacity: 1;
+    z-index: 99999;
+    box-shadow: 0 0 1px rgba(255, 0, 0, 0.6), 0 0 4px rgba(255, 0, 0, 0.4);
+}
+
+.heart:after, .heart:before {
+    content: '';
+    width: inherit;
+    height: inherit;
+    background-color: inherit;
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: inherit;
+}
+
+.heart:after {
+    top: -10px;
+    left: 0;
+}
+
+.heart:before {
+    left: -10px;
+    top: 0;
+}
+
+.text {
+    position: fixed;
+    top: 60%; /* Dịch xuống 10% để không bị dính vào ảnh */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 36px;
+    color: #ff69b4;
+    font-family: 'Dancing Script', cursive; /* Sử dụng font Dancing Script */
+    text-align: center;
+    z-index: 99998;
+    text-shadow: 0 0 5px rgba(255, 0, 255, 0.6);
+}
+
+.image {
+    position: fixed;
+    top: 35%; /* Vị trí ảnh vẫn giữ nguyên */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100000;
+}
+
+.image img {
+    width: 250px; /* Kích thước ảnh */
+    height: auto; /* Tự động điều chỉnh chiều cao để giữ tỉ lệ */
+    filter: drop-shadow(0 0 5px rgba(255, 105, 180, 0.6)) drop-shadow(0 0 15px rgba(255, 105, 180, 0.4)); /* Hiệu ứng neon */
+    cursor: pointer; /* Thay đổi con trỏ khi di chuột lên ảnh */
+}

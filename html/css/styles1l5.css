@@ -1,0 +1,75 @@
+/* Đặt nền hồng chỉ cho phần văn bản */
+.text-background {
+    width: 400px;
+    margin: 20px auto; /* Thêm margin trên và dưới */
+    background-color: rgb(248, 84, 212);
+    color: #fff;
+    font-size: 20px;
+    font-family: "幼圆";
+    font-weight: 500;
+    padding: 10px; /* Thêm padding để tạo khoảng cách */
+    text-align: center; /* Canh giữa văn bản */
+}
+
+/* Lớp chứa để căn giữa nút */
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px); /* Đảm bảo nút được căn giữa */
+}
+
+.neon-button {
+    font-family: 'Arial', sans-serif;
+    font-size: 24px;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 15px 30px;
+    border: 2px solid #ff00ff; /* Đổi màu viền thành hồng */
+    background: none;
+    cursor: pointer;
+    position: relative;
+    border-radius: 10px;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff; /* Đổi màu ánh sáng */
+    transition: 0.2s;
+}
+
+.neon-button:hover {
+    box-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff, 0 0 60px #ff00ff, 0 0 80px #ff00ff;
+}
+
+.neon-button:active {
+    box-shadow: none;
+    background-color: #ff00ff;
+    color: #000;
+}
+
+.heart {
+    width: 10px;
+    height: 10px;
+    position: fixed;
+    background: #f00;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+}
+
+.heart:after,
+.heart:before {
+    content: '';
+    width: inherit;
+    height: inherit;
+    background: inherit;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    position: fixed;
+}
+
+.heart:after {
+    top: -5px;
+}
+
+.heart:before {
+    left: -5px;
+}

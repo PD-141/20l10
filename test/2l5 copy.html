@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flying Neon Hearts</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #ffffff; /* Màu nền trắng */
+        }
+
+        /* CSS cho trái tim neon */
+        .heart {
+            width: 20px;
+            height: 20px;
+            position: fixed;
+            background-color: #ff0000; /* Màu trái tim đỏ */
+            transform: rotate(45deg);
+            opacity: 1;
+            z-index: 99999;
+            box-shadow: 0 0 1px rgba(255, 0, 0, 0.6), 0 0 4px rgba(255, 0, 0, 0.4); /* Hiệu ứng neon giảm bớt */
+        }
+
+        .heart:after, .heart:before {
+            content: '';
+            width: inherit;
+            height: inherit;
+            background-color: inherit;
+            position: absolute;
+            border-radius: 50%;
+            box-shadow: inherit; /* Thừa hưởng hiệu ứng neon */
+        }
+
+        .heart:after {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart:before {
+            left: -10px;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+    !function(e, t, a) {
+        var hearts = [];
+        var speed = 4; // Tốc độ bay lên
+        var quantity = 50; // Số lượng trái tim bay lên mỗi lần
+
+        // Hàm tạo trái tim bay lên
+        function createHeart(x, y) {
+            var heart = t.createElement("div");
+            heart.className = "heart";
+            hearts.push({
+                el: heart,
+                x: x - 10,
+                y: y - 10,
+                alpha: 1,
+                color: '#ff0000' // Màu trái tim đỏ
+            });
+            t.body.appendChild(heart);
+        }
+
+        // Hàm xử lý các trái tim đang bay lên
+        function animate() {
+            for (var i = 0; i < hearts.length; i++) {
+                if (hearts[i].y + 20 < 0) { // Kiểm tra nếu trái tim đã ra khỏi màn hình
+                    t.body.removeChild(hearts[i].el);
+                    hearts.splice(i, 1);
+                    i--; // Điều chỉnh chỉ số sau khi xóa phần tử
+                } else {
+                    hearts[i].y -= speed; // Di chuyển trái tim lên
+                    hearts[i].el.style.cssText = "left:" + hearts[i].x + "px;top:" + hearts[i].y + "px;opacity:" + hearts[i].alpha +
+                        ";background:" + hearts[i].color + ";z-index:99999;";
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        // Hàm để tạo trái tim ngẫu nhiên khi nhấn chuột
+        function handleMouseClick(e) {
+            for (let i = 0; i < quantity; i++) { // Tạo số lượng trái tim dựa trên giá trị của quantity
+                createHeart(e.clientX, e.clientY);
+            }
+        }
+
+        // Tạo trái tim tự động bay lên từ các vị trí ngẫu nhiên
+        function createHeartsAutomatically() {
+            setInterval(function() {
+                var randomX = Math.random() * window.innerWidth;
+                var randomY = window.innerHeight; // Bắt đầu từ phía dưới
+                for (let i = 0; i < quantity; i++) { // Tạo số lượng trái tim dựa trên giá trị của quantity
+                    createHeart(randomX, randomY); 
+                }
+            }, 300); // Cứ 300ms tạo một trái tim mới
+        }
+
+        // Bắt đầu vẽ các trái tim
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e
+            .mozRequestAnimationFrame || e.msRequestAnimationFrame || function(e) {
+                setTimeout(e, 1e3 / 60);
+            };
+
+        e.onclick = handleMouseClick; // Kích hoạt tạo trái tim khi nhấp chuột
+        createHeartsAutomatically();  // Bắt đầu tạo trái tim bay lên tự động
+        animate(); // Khởi chạy quá trình xử lý bay lên
+    }(window, document);
+</script>
+
+</body>
+</html>

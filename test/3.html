@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Mừng ngày 20/10</title>
+    <meta charset="UTF-8">
+    <meta name="Keywords" content="NTXN">
+    <meta name="Description" content="MyLoveIsNTXN">
+    <link rel="shortcut icon" href="traitim.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: pink;
+            overflow: hidden;
+        }
+
+        #frame {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            margin: 250px auto;
+        }
+
+        .left,
+        .right {
+            top: 0;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+        }
+
+        .left {
+            left: 35px;
+        }
+
+        .right {
+            right: 35px;
+            z-index: -1;
+        }
+
+        .bottom {
+            bottom: 36px;
+            left: 100px;
+            width: 200px;
+            height: 200px;
+            transform: rotate(45deg);
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            box-shadow: 0 0 40px #d5093c;
+            animation: beat .4s ease infinite normal;
+            background: linear-gradient(-90deg, #F50A45 0%, #d5093c 40%);
+        }
+
+        @keyframes beat {
+            0% {
+                transform: scale(1) rotate(225deg);
+                box-shadow: 0 0 40px #d5093c;
+            }
+
+            50% {
+                transform: scale(1.1) rotate(225deg);
+                box-shadow: 0 0 70px #d5093c;
+            }
+
+            100% {
+                transform: scale(1) rotate(225deg);
+                box-shadow: 0 0 40px #d5093c;
+            }
+        }
+
+        .word {
+            position: absolute;
+            width: 50%;
+            top: 75%;
+            left: 25%;
+            text-align: center;
+            transform: translateY(-50%);
+            font-family: 'Roboto', sans-serif;
+            font-size: 40px;
+            color: #c70012;
+            padding: 0 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            opacity: 1;
+            transition: opacity 6s ease-out;
+        }
+
+        .countdown {
+            text-align: center;
+            font-size: 30px;
+            font-family: 'Roboto', sans-serif;
+            color: #c70012;
+            margin-top: 20px;
+        }
+
+        #click-message {
+            opacity: 0;
+            transition: opacity 2s ease-in;
+            display: none;
+            text-align: center; /* Canh giữa chữ */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px; /* Khoảng cách với dòng chữ */
+        }
+
+        .neon-button {
+            display: none; /* Ẩn nút ban đầu */
+            padding: 15px 30px;
+            background-color: #d5093c;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 20px;
+            font-family: 'Roboto', sans-serif;
+            text-shadow: 0 0 5px #fff, 0 0 10px #ff00e1, 0 0 20px #ff00e1;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .neon-button:hover {
+            box-shadow: 0 0 20px #ff00e1, 0 0 30px #ff00e1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="frame">
+        <div class="heart left"></div>
+        <div class="heart right"></div>
+        <div class="heart bottom"></div>
+    </div>
+
+    <b class="word" id="message">Sự đáng yêu của em là năng lượng giúp trái tim anh đang đập :3 ❤ </b>
+    <div class="button-container">
+        <b class="word" id="click-message">Ấn vào nút này để biết anh yêu em nhiều như nào ❤</b>
+        <button class="neon-button" id="neon-button" onclick="window.location.href='4.html';">Ấn vào đây ❤</button>
+    </div>
+    
+    <div class="countdown" id="countdown">6</div>
+
+    <script>
+        var countdown = 6;
+        var countdownElement = document.getElementById('countdown');
+        var messageElement = document.getElementById("message");
+        var clickMessageElement = document.getElementById("click-message");
+        var neonButton = document.getElementById("neon-button");
+
+        // Bộ đếm ngược
+        var countdownInterval = setInterval(function () {
+            countdownElement.textContent = countdown; // Cập nhật giá trị đếm
+            countdown--;
+            if (countdown < 0) {
+                clearInterval(countdownInterval);
+                countdownElement.style.display = 'none'; // Ẩn bộ đếm khi hết thời gian
+            }
+        }, 1000); // Cập nhật mỗi giây
+
+        // Hiệu ứng mờ và hiển thị dòng chữ "Ấn vào nút này để biết anh yêu em nhiều như nào"
+        setTimeout(function () {
+            messageElement.style.opacity = 0; // Mờ dần dòng chữ chính
+            clickMessageElement.style.display = 'block'; // Hiện dòng chữ "Ấn vào nút này"
+            neonButton.style.display = 'block'; // Hiện nút bấm
+            setTimeout(function () {
+                clickMessageElement.style.opacity = 1; // Dần hiện rõ sau 7 giây
+            }, 1000); // Đợi 1 giây trước khi bắt đầu hiện
+        }, 7000); // Sau 6 giây
+    </script>
+</body>
+
+</html>
